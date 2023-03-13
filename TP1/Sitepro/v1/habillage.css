@@ -8,7 +8,7 @@ h1 {
     text-align: center;
   }
 
-h2 {
+#center {
     text-align: center;
 }
 
@@ -24,4 +24,8 @@ h2 {
 #currentPage {
     color: green;
     font-weight: bold;
+}
+
+a:hover {
+    color: orange
 }
