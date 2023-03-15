@@ -16,7 +16,7 @@
 ?>
 <section class="corps">
     <?php
-        $pageToInclude = "../" . $lang. "/" . $currentPageId . ".php";
+        $pageToInclude = "../" . $lang . "/" . $currentPageId . ".php";
         if(is_readable($pageToInclude))
             require_once($pageToInclude);
         else

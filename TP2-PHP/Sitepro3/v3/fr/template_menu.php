@@ -22,10 +22,10 @@
                 }
             }
             if($lang == 'fr'){
-                echo'<li><a href="index.php?page=' . $currentPageId . '&lang=en">Passer en' . $langMenu . '</a></li>';
+                echo'<li><a href="index.php?page=' . $currentPageId . '&lang=en">Passer en ' . $langMenu . '</a></li>';
             }
             else {
-                echo'<li><a href="index.php?page=' . $currentPageId . '&lang=' . $lang . '">Passer en' . $langMenu . '</a></li>';
+                echo'<li><a href="index.php?page=' . $currentPageId . '&lang=' . $lang . '">Passer en ' . $langMenu . '</a></li>';
             }
             echo"</ul></nav>";
         } 
