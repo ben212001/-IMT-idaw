@@ -1,0 +1,31 @@
+body {
+    background-color: lightblue;
+    font-family: Arial, sans-serif;
+  }
+
+h1 {
+    color: darkblue;
+    text-align: center;
+  }
+
+#center {
+    text-align: center;
+}
+
+.menu {
+    display: flex;
+    padding: 10px;
+  }
+
+.rouge {
+    background-color: #E24;
+  }
+
+#currentPage {
+    color: green;
+    font-weight: bold;
+}
+
+a:hover {
+    color: orange
+}
