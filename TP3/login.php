@@ -21,4 +21,5 @@
             </tr>
         </table>
     </form>
+    <h2>Ton login de session est <?php $login_session ?> </h2>;
 </body>
