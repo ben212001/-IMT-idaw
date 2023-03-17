@@ -16,6 +16,8 @@
             $successfullyLogged = true;
             $login = $tryLogin;
             $password = $tryPwd;
+            session_start();
+            $login_session = $_SESSION['PHPSESSID'];
         } else {
             $errorText = "Erreur de login/password";
         }
@@ -26,5 +28,6 @@
     } 
     else {
         echo "<h1>Bienvenu ".$login.". Ton mdp est " . $password . "</h1>";
+        echo "<h1>Ton login de session est " .$login_session. "</h1>";
     }
 ?>
