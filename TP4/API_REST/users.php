@@ -16,23 +16,35 @@
     //actions différentes en fonction du type de méthode HTTP utilisé
     switch($request_method){
         case 'GET':
-            $request = $pdo->prepare("SELECT * FROM Users");
-            $request->execute();
-            $resultat = $request->fetchAll(PDO::FETCH_OBJ);
-            $affich = json_encode($resultat);
-            echo $affich;
-            break;
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $request = $pdo->prepare("SELECT * FROM Users WHERE id = $id");
+                $request->execute();
+                $resultat = $request->fetchAll(PDO::FETCH_ASSOC);
+                $affich = json_encode($resultat);
+            }
+            else {
+                $request = $pdo->prepare("SELECT * FROM Users");
+                $request->execute();
+                $resultat = $request->fetchAll(PDO::FETCH_ASSOC);
+                $affich = json_encode($resultat);
+                echo $affich;
+            }
+        break;
 
         case 'POST':
-            $json = json_decode(file_get_contents('php://input'));         
-            $name = $json['name'];
-            $email = $json['email'];         
-            $request = $pdo->prepare("INSERT INTO Users (name, email) VALUES ('$name', '$email')");         
-            $request->execute();         
-            $resultat = $request->fetchAll(PDO::FETCH_OBJ);
-            $affich = json_encode($resultat);
-            echo $affich;
-            break;
+            if(isset($_POST['name']) && isset($_POST['email'])) {
+                $json = json_decode(file_get_contents('php://input'));
+                print_r($json);      
+                $name = $json['name'];
+                $email = $json['email'];         
+                $request = $pdo->prepare("INSERT INTO Users (name, email) VALUES ('$name', '$email')");         
+                $request->execute();         
+                $resultat = $request->fetchAll(PDO::FETCH_ASSOC);
+                $affich = json_encode($resultat);
+                echo $affich;
+            }
+        break;
 
         case 'PUT':
             if(!empty($uri[5])) {
@@ -54,4 +66,5 @@
             break;
     }
 
+    // close link to database
     $pdo = null;
