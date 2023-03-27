@@ -20,7 +20,7 @@ if ($method == 'GET') {
 
 if ($method == 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
-    $user = createUser($data['name'], $data['email']);
+    $user = createUser($data['login'], $data['email']);
     if ($user) {
         header('HTTP/1.1 201 Created');
         echo json_encode($user);
@@ -47,7 +47,7 @@ if ($method == 'DELETE') {
 
 if ($method == 'PUT') {
     $data = json_decode(file_get_contents('php://input'), true);
-    $result = updateUserById($_GET['id'], $data['name'], $data['email']);
+    $result = updateUserById($_GET['id'], $data['login'], $data['email']);
     if ($result) {
         echo json_encode(['success' => 'User updated successfully']);
     } else {

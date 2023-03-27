@@ -10,9 +10,9 @@
         return $users;
     }
 
-    function createUser($name, $email) {
+    function createUser($login, $email) {
         global $pdo;
-        $request = $pdo->prepare("insert into users (name, email) values ($name, $email)");
+        $request = $pdo->prepare("insert into users (login, email) values ('$login', '$email')");
         $result = $request->execute();
         if ($result) {
             $id = $pdo->lastInsertId();
@@ -46,9 +46,9 @@
         return $result;
     }
 
-    function updateUserById($id, $name, $email) {
+    function updateUserById($id, $login, $email) {
         global $pdo;
-        $request = $pdo->prepare("update users set name = $name, email = $email where id = $id");
+        $request = $pdo->prepare("update users set login = $login, email = $email where id = $id");
         $result = $request->execute();
         return $result;
     }
