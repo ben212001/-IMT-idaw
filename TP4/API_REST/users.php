@@ -3,6 +3,7 @@
     require_once('init_pdo.php');
 
     function getAllUsers() {
+        global $pdo;
         $request = $pdo->prepare("select * from users");
         $request->execute();
         $users = $request->fetchAll(PDO::FETCH_ASSOC);
@@ -10,6 +11,7 @@
     }
 
     function createUser($name, $email) {
+        global $pdo;
         $request = $pdo->prepare("insert into users (name, email) values ($name, $email)");
         $result = $request->execute();
         if ($result) {
@@ -24,6 +26,7 @@
     }
 
     function getUserById($id) {
+        global $pdo;
         $request = $pdo->prepare("select * from users where id = $id");
         $request->execute();
         $user = $request->fetch(PDO::FETCH_ASSOC);
@@ -31,12 +34,20 @@
     }
 
     function deleteUserById($id) {
+        global $pdo;
+        //verify if $id exists in the database
+        $user = getUserById($id);
+        if (!$user) {
+            return false;
+        }
+        //delete user
         $request = $pdo->prepare("delete from users where id = $id");
         $result = $request->execute();
         return $result;
     }
 
     function updateUserById($id, $name, $email) {
+        global $pdo;
         $request = $pdo->prepare("update users set name = $name, email = $email where id = $id");
         $result = $request->execute();
         return $result;
