@@ -22,6 +22,18 @@
             </thead>
             <tbody></tbody>
         </table>
+        <h2>Ajouter un utilisateur</h2>
+        <form id="add-form">
+            <div class="form-group">
+                <label for="login-input">Login</label>
+                <input type="text" class="form-control" id="login-input" required>
+            </div>
+            <div class="form-group">
+                <label for="email-input">Email</label>
+                <input type="email" class="form-control" id="email-input" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+        </form>
     </div>
 
     <script>
@@ -60,7 +72,7 @@
             $.ajax({
                 url: URL_API, // URL de l'API
                 type: 'POST',
-                data: { login: login, email: email },
+                data: JSON.stringify({ login: login, email: email }),
                 dataType: 'json',
                 success: function(response) {
                     // Si la requête réussit, on met à jour le tableau des utilisateurs
@@ -75,7 +87,6 @@
 
     // Fonction pour modifier un utilisateur via l'API
     function editUser(id, login, email) {
-        console.log('edit ' + id);
         $.ajax({
             url: URL_API, // URL de l'API avec l'ID de l'utilisateur
             type: 'PUT',
